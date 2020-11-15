@@ -24,13 +24,8 @@ function userInput() {
   // console.log(pwSize + " " + specialValue + " " + numericValue + " " + upperCase + " " + lowerCase)
 }
 
-// Generate Password
-function generatePassword() {
-  //create a string that we will pull from for the password
-  var charactersToChooseFrom = ''
+function stringLiteral(charactersToChooseFrom) {
 
-  //call userInput function to store values
-  userInput();
   if (lowerCase) {
     charactersToChooseFrom += 'abcdefghijklmnopqrstuvwxyz';
   }
@@ -44,8 +39,20 @@ function generatePassword() {
     charactersToChooseFrom += ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
   }
 
+  return charactersToChooseFrom;
+}
+
+// Generate Password
+function generatePassword() {
+
+  //call userInput function to store values
+  userInput();
+
+  //creating string for password creation
+  var passWordChoices = stringLiteral('');
+
   /* checking for if works */
-  // console.log(charactersToChooseFrom);
+  console.log(passWordChoices);
 }
 
 // Write password to the #password input
