@@ -8,7 +8,7 @@ var lowerCase = false;
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-//Ask what they would like in their password
+//Ask what user would like in their password
 function userInput() {
   pwSize = prompt("How long is your password? Please choose between 8 and 128.", 8);
   if (pwSize < 7 || pwSize > 129) {
@@ -20,12 +20,32 @@ function userInput() {
   numericValue = confirm("Numbers included?");
   specialValue = confirm("Special characters included?");
 
-  console.log(pwSize + " " + specialValue + " " + numericValue + " " + upperCase + " " + lowerCase)
+  /* checking for if works */
+  // console.log(pwSize + " " + specialValue + " " + numericValue + " " + upperCase + " " + lowerCase)
 }
 
 // Generate Password
 function generatePassword() {
+  //create a string that we will pull from for the password
+  var charactersToChooseFrom = ''
+
+  //call userInput function to store values
   userInput();
+  if (lowerCase) {
+    charactersToChooseFrom += 'abcdefghijklmnopqrstuvwxyz';
+  }
+  if (upperCase) {
+    charactersToChooseFrom += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  }
+  if (numericValue) {
+    charactersToChooseFrom += '0123456789';
+  }
+  if (specialValue) {
+    charactersToChooseFrom += ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+  }
+
+  /* checking for if works */
+  // console.log(charactersToChooseFrom);
 }
 
 // Write password to the #password input
