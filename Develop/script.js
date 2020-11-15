@@ -44,6 +44,8 @@ function stringLiteral(charactersToChooseFrom) {
 
 // Generate Password
 function generatePassword() {
+  //create empty character for later
+  var result = '';
 
   //call userInput function to store values
   userInput();
@@ -51,8 +53,13 @@ function generatePassword() {
   //creating string for password creation
   var passWordChoices = stringLiteral('');
 
+  //pull from passWordChoices to create password
+  for (var i = 0; i < pwSize; i++) {
+    result += passWordChoices.charAt(Math.floor(Math.random() * passWordChoices.length));
+  }
+
   /* checking for if works */
-  console.log(passWordChoices);
+  console.log(result);
 }
 
 // Write password to the #password input
