@@ -21,6 +21,7 @@ function userInput() {
   specialValue = confirm("Special characters included?");
 }
 
+//creating the String to choose Password from
 function stringLiteral(charactersToChooseFrom) {
 
   if (lowerCase) {
@@ -35,23 +36,23 @@ function stringLiteral(charactersToChooseFrom) {
   if (specialValue) {
     charactersToChooseFrom += ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
   }
+  //if no characters were chosen, kick user out.
   if (charactersToChooseFrom === '') {
     confirm("Your password is null. Try again.")
     return
   }
-
   return charactersToChooseFrom;
 }
 
 // Generate Password
 function generatePassword() {
-  //create empty character for later
+  //create empty character/string for later
   var result = '';
 
-  //call userInput function to store values
+  //call userInput function to store user options
   userInput();
 
-  //creating string for password creation
+  //creating string for password creation criteria
   var passWordChoices = stringLiteral('');
 
   //pull from passWordChoices to create password
