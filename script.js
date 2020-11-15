@@ -11,9 +11,10 @@ var generateBtn = document.querySelector("#generate");
 //Ask what user would like in their password
 function userInput() {
   pwSize = prompt("How long is your password? Please choose between 8 and 128.", 8);
+  //if out of bounds kick user out
   if (pwSize < 8 || pwSize > 128) {
-    confirm("Your password length is out of bounds! Try again.");
-    return lowerCase = true;
+    alert("Your password length is out of bounds! Try again.");
+    return;
   }
   lowerCase = confirm("Lower case characters included?");
   upperCase = confirm("Upper case characters included?");
@@ -37,8 +38,8 @@ function stringLiteral(charactersToChooseFrom) {
     charactersToChooseFrom += ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
   }
   //if no characters were chosen, kick user out.
-  if (charactersToChooseFrom === '') {
-    confirm("Your password is null. Try again.")
+  if (charactersToChooseFrom === '' && !(pwSize < 8 || pwSize > 128)) {
+    alert("Your password is null. Try again.")
     return
   }
   return charactersToChooseFrom;
