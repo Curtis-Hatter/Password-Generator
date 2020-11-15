@@ -11,17 +11,14 @@ var generateBtn = document.querySelector("#generate");
 //Ask what user would like in their password
 function userInput() {
   pwSize = prompt("How long is your password? Please choose between 8 and 128.", 8);
-  if (pwSize < 7 || pwSize > 129) {
-    console.log("Your password length is out of bounds! Try again.");
+  if (pwSize < 8 || pwSize > 128) {
+    confirm("Your password length is out of bounds! Try again.");
     return;
   }
   lowerCase = confirm("Lower case characters included?");
   upperCase = confirm("Upper case characters included?");
   numericValue = confirm("Numbers included?");
   specialValue = confirm("Special characters included?");
-
-  /* checking for if works */
-  // console.log(pwSize + " " + specialValue + " " + numericValue + " " + upperCase + " " + lowerCase)
 }
 
 function stringLiteral(charactersToChooseFrom) {
@@ -37,6 +34,10 @@ function stringLiteral(charactersToChooseFrom) {
   }
   if (specialValue) {
     charactersToChooseFrom += ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+  }
+  if (charactersToChooseFrom === '') {
+    confirm("Your password is null. Try again.")
+    return
   }
 
   return charactersToChooseFrom;
@@ -58,8 +59,7 @@ function generatePassword() {
     result += passWordChoices.charAt(Math.floor(Math.random() * passWordChoices.length));
   }
 
-  /* checking for if works */
-  console.log(result);
+  return result;
 }
 
 // Write password to the #password input
