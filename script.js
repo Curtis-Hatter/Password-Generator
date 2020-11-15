@@ -13,7 +13,7 @@ function userInput() {
   pwSize = prompt("How long is your password? Please choose between 8 and 128.", 8);
   if (pwSize < 8 || pwSize > 128) {
     confirm("Your password length is out of bounds! Try again.");
-    return;
+    return lowerCase = true;
   }
   lowerCase = confirm("Lower case characters included?");
   upperCase = confirm("Upper case characters included?");
