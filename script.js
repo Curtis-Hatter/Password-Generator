@@ -4,6 +4,7 @@ var specialValue = false;
 var numericValue = false;
 var upperCase = false;
 var lowerCase = false;
+var passWordChoices = '';
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -14,6 +15,7 @@ function userInput() {
   //if out of bounds kick user out
   if (pwSize < 8 || pwSize > 128) {
     alert("Your password length is out of bounds! Try again.");
+    passWordChoices = ' ';
     return;
   }
   lowerCase = confirm("Lower case characters included?");
@@ -23,7 +25,8 @@ function userInput() {
 }
 
 //creating the String to choose Password from
-function stringLiteral(charactersToChooseFrom) {
+function stringLiteral() {
+  var charactersToChooseFrom = '';
 
   if (lowerCase) {
     charactersToChooseFrom += 'abcdefghijklmnopqrstuvwxyz';
@@ -39,29 +42,74 @@ function stringLiteral(charactersToChooseFrom) {
   }
   //if no characters were chosen, kick user out.
   if (charactersToChooseFrom === '' && !(pwSize < 8 || pwSize > 128)) {
-    alert("Your password is null. Try again.")
-    return
+    alert("Your password is null. Try again.");
+    return ' '; /*  ASK ABOUT THIS ONE!!!!!!! */
   }
   return charactersToChooseFrom;
 }
 
+function passwordCreation() {
+  //create empty string to concat from for loop
+  var result = '';
+  //concats the random characters generated from loop to result giving random password
+  for (var i = 0; i < pwSize; i++) {
+    result += passWordChoices.charAt(Math.floor(Math.random() * passWordChoices.length));
+  }
+  //double checking if user has all desired components
+  result = doubleCheck(result);
+  return result;
+}
+
+//ASK ABOUT THIS!!!!!
+//double checking function 
+function doubleCheck(result) {
+  if (lowerCase) {
+    var checking = /[a-z]/;
+    if (result.search(checking) < 0) {
+      //use recursion to create desired password
+      console.log("Checking1");
+      result = passwordCreation();
+    }
+  }
+  if (upperCase) {
+    checking = /[A-Z]/;
+    if (result.search(checking) < 0) {
+      //use recursion to create desired password
+      console.log("Checking2");
+      result = passwordCreation();
+    }
+  }
+  if (numericValue) {
+    checking = /[0-9]/;
+    if (result.search(checking) < 0) {
+      //use recursion to create desired password
+      console.log("Checking3");
+      result = passwordCreation();
+    }
+  }
+  if (specialValue) {
+    checking = /[ !"#$%&'()*+,-./:;<=>?@_`{}~]/;
+    if (result.search(checking) < 0) {
+      //use recursion to create desired password
+      console.log("Checking4");
+      passwordCreation();
+    }
+  }
+  return result;
+}
+
 // Generate Password
 function generatePassword() {
-  //create empty character/string for later
-  var result = '';
-
   //call userInput function to store user options
   userInput();
 
   //creating string for password creation criteria
-  var passWordChoices = stringLiteral('');
+  passWordChoices = stringLiteral();
 
   //pull from passWordChoices to create password
-  for (var i = 0; i < pwSize; i++) {
-    result += passWordChoices.charAt(Math.floor(Math.random() * passWordChoices.length));
-  }
+  var password = passwordCreation();
 
-  return result;
+  return password;
 }
 
 // Write password to the #password input
