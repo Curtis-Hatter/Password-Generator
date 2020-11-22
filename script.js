@@ -66,7 +66,6 @@ function doubleCheck(result) {
     var checking = /[a-z]/;
     if (result.search(checking) < 0) {
       //use recursion to create desired password
-      console.log("Checking1");
       result = passwordCreation();
     }
   }
@@ -74,7 +73,6 @@ function doubleCheck(result) {
     checking = /[A-Z]/;
     if (result.search(checking) < 0) {
       //use recursion to create desired password
-      console.log("Checking2");
       result = passwordCreation();
     }
   }
@@ -82,7 +80,6 @@ function doubleCheck(result) {
     checking = /[0-9]/;
     if (result.search(checking) < 0) {
       //use recursion to create desired password
-      console.log("Checking3");
       result = passwordCreation();
     }
   }
@@ -90,7 +87,6 @@ function doubleCheck(result) {
     checking = /[!"#$%&()*+,-./:;<=>?@[_`{}~]/;
     if (result.search(checking) < 0) {
       //use recursion to create desired password
-      console.log("Checking4");
       result = passwordCreation();
     }
   }
