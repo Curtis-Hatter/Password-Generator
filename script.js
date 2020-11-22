@@ -15,8 +15,8 @@ function userInput() {
   //if out of bounds kick user out
   if (pwSize < 8 || pwSize > 128) {
     alert("Your password length is out of bounds! Try again.");
-    passWordChoices = ' ';
-    return;
+    passWordChoices = '';
+    return "";
   }
   lowerCase = confirm("Lower case characters included?");
   upperCase = confirm("Upper case characters included?");
@@ -35,15 +35,15 @@ function stringLiteral() {
     charactersToChooseFrom += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   }
   if (numericValue) {
-    charactersToChooseFrom += '0123456789';
+    charactersToChooseFrom += '01234567890123456789';
   }
   if (specialValue) {
-    charactersToChooseFrom += ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+    charactersToChooseFrom += '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
   }
   //if no characters were chosen, kick user out.
   if (charactersToChooseFrom === '' && !(pwSize < 8 || pwSize > 128)) {
     alert("Your password is null. Try again.");
-    return ' '; /*  ASK ABOUT THIS ONE!!!!!!! */
+    return "";
   }
   return charactersToChooseFrom;
 }
@@ -55,13 +55,14 @@ function passwordCreation() {
   for (var i = 0; i < pwSize; i++) {
     result += passWordChoices.charAt(Math.floor(Math.random() * passWordChoices.length));
   }
-  //double checking if user has all desired components
-  result = doubleCheck(result);
-  return result;
+
+  // double checking if user has all desired components
+
+  return doubleCheck(result);
 }
 
-//ASK ABOUT THIS!!!!!
-//double checking function 
+// ASK ABOUT THIS!!!!!
+// double checking function 
 function doubleCheck(result) {
   if (lowerCase) {
     var checking = /[a-z]/;
@@ -88,13 +89,14 @@ function doubleCheck(result) {
     }
   }
   if (specialValue) {
-    checking = /[ !"#$%&'()*+,-./:;<=>?@_`{}~]/;
+    checking = /[!"#$%&()*+,-./:;<=>?@[_`{}~]/;
     if (result.search(checking) < 0) {
       //use recursion to create desired password
       console.log("Checking4");
-      passwordCreation();
+      result = passwordCreation();
     }
   }
+
   return result;
 }
 
@@ -102,6 +104,10 @@ function doubleCheck(result) {
 function generatePassword() {
   //call userInput function to store user options
   userInput();
+  //error checking
+  if (pwSize < 8 || pwSize > 128) {
+    return "";
+  }
 
   //creating string for password creation criteria
   passWordChoices = stringLiteral();
