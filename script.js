@@ -49,19 +49,17 @@ function stringLiteral() {
 }
 
 function passwordCreation() {
-  //create empty string to concat from for loop
+  //create empty string to concat from user choices
   var result = '';
-  //concats the random characters generated from loop to result giving random password
+  //concats the random characters generated from "loop to result" giving random password
   for (var i = 0; i < pwSize; i++) {
     result += passWordChoices.charAt(Math.floor(Math.random() * passWordChoices.length));
   }
 
-  // double checking if user has all desired components
-
+  // double checking if user has all desired components requested
   return doubleCheck(result);
 }
 
-// ASK ABOUT THIS!!!!!
 // double checking function 
 function doubleCheck(result) {
   if (lowerCase) {
@@ -96,7 +94,6 @@ function doubleCheck(result) {
       result = passwordCreation();
     }
   }
-
   return result;
 }
 
@@ -104,7 +101,7 @@ function doubleCheck(result) {
 function generatePassword() {
   //call userInput function to store user options
   userInput();
-  //error checking
+  //error checking: Kick User Out
   if (pwSize < 8 || pwSize > 128) {
     return "";
   }
